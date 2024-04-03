@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  laravel:
+    build:
+      context: ./docker/laravel
+    ports:
+      - "3022:8000"
+    volumes:
+      - ./api:/var/www/html
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
