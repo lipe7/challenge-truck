@@ -42,7 +42,11 @@ class ProductController extends Controller
                 return response()->json(['error' => 'Product not found'], 404);
             }
 
-            return response()->json($product);
+            return response()->json([
+                'success' => true,
+                'message' => 'Product found successfully',
+                'data' => $product
+            ]);
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], $e->getCode());
         } catch (HttpExceptionInterface $e) {
@@ -58,8 +62,9 @@ class ProductController extends Controller
             $product = $this->productService->updateProduct($request, $code);
 
             return response()->json([
+                'success' => true,
                 'message' => 'Product updated successfully',
-                'product' => $product
+                'data' => $product
             ]);
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], $e->getCode());
@@ -74,7 +79,11 @@ class ProductController extends Controller
     {
         try {
             $this->productService->moveToTrash($code);
-            return response()->json(['message' => 'Product moved to trash successfully']);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product moved to trash successfully'
+            ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], $e->getCode());
         }
