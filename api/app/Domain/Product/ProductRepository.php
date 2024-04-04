@@ -8,6 +8,7 @@ class ProductRepository
 {
     public function getByCode($code)
     {
+        $code = (int) $code;
         return Product::where('code', $code)->first();
     }
 

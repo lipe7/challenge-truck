@@ -21,6 +21,11 @@ class ProductService
         return $this->repository->getAll($filters);
     }
 
+    public function getByCode($code)
+    {
+        return $this->repository->getByCode($code);
+    }
+
     public function updateProduct(UpdateProductRequest $request, $code)
     {
 

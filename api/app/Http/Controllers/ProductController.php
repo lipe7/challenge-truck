@@ -33,6 +33,25 @@ class ProductController extends Controller
         }
     }
 
+    public function show($code)
+    {
+        try {
+            $product = $this->productService->getByCode($code);
+
+            if (!$product) {
+                return response()->json(['error' => 'Product not found'], 404);
+            }
+
+            return response()->json($product);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->errors()], $e->getCode());
+        } catch (HttpExceptionInterface $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
+        }
+    }
+
     public function update(UpdateProductRequest $request, $code)
     {
         try {
