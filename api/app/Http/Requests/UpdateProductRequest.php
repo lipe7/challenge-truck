@@ -22,10 +22,7 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'sometimes|url',
             'creator' => 'sometimes|string',
-            'created_t' => 'sometimes|numeric',
-            'last_modified_t' => 'sometimes|numeric',
             'product_name' => 'sometimes|string',
             'quantity' => 'sometimes|string',
             'brands' => 'sometimes|string',
@@ -41,7 +38,6 @@ class UpdateProductRequest extends FormRequest
             'nutriscore_score' => 'sometimes|numeric',
             'nutriscore_grade' => 'sometimes|string',
             'main_category' => 'sometimes|string',
-            'image_url' => 'sometimes|url',
         ];
     }
 }
