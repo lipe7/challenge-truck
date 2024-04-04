@@ -79,7 +79,7 @@ class ImportOpenFoodFacts extends Command
 
     protected function importProduct($productData)
     {
-        $code = $productData['code'];
+        $code = (int) $productData['code'];
         $existingProduct = Product::where('code', $code)->first();
 
         $productAttributes = [
@@ -92,6 +92,7 @@ class ImportOpenFoodFacts extends Command
         $defaultData = Arr::only($productData, $productAttributes);
         $defaultData['imported_t'] = now()->format('Y-m-d H:i:s');
         $defaultData['status'] = 'published';
+        $defaultData['code'] = (int) $defaultData['code'];
 
         if ($existingProduct) {
             $existingProduct->update(['status' => 'updated']);
