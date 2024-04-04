@@ -39,4 +39,12 @@ class ProductRepository
 
         return $product;
     }
+
+    public function moveToTrash(Product $product)
+    {
+        $product->status = 'trash';
+        $product->save();
+
+        return $product;
+    }
 }

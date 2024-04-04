@@ -69,4 +69,14 @@ class ProductController extends Controller
             return response()->json(['error' => $e->getMessage()], $e->getCode());
         }
     }
+
+    public function delete($code)
+    {
+        try {
+            $this->productService->moveToTrash($code);
+            return response()->json(['message' => 'Product moved to trash successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
+        }
+    }
 }

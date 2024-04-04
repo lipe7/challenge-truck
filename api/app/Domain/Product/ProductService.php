@@ -37,4 +37,15 @@ class ProductService
 
         return $this->repository->update($product, $data);
     }
+
+    public function moveToTrash($code)
+    {
+        $product = $this->getByCode($code);
+
+        if (!$product) {
+            throw new \Exception('Product not found', 404);
+        }
+
+        return $this->repository->moveToTrash($product);
+    }
 }

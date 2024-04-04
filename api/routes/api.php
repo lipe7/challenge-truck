@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/', [ApiStatusController::class, 'apiDetails']);
 Route::put('/products/{code}', [ProductController::class, 'update']);
+Route::delete('/products/{code}', [ProductController::class, 'delete']);
 Route::get('/products', [ProductController::class, 'list']);
 Route::get('/products/{code}', [ProductController::class, 'show']);
