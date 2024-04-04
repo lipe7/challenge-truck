@@ -11,7 +11,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('code')->unique();
-            $table->string('status');
+            $table->enum('status', ['draft', 'trash', 'published']);
             $table->timestamp('imported_t');
             $table->string('url');
             $table->string('creator');
