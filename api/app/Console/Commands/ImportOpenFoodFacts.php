@@ -91,6 +91,7 @@ class ImportOpenFoodFacts extends Command
 
         $defaultData = Arr::only($productData, $productAttributes);
         $defaultData['imported_t'] = now()->format('Y-m-d H:i:s');
+        $defaultData['status'] = 'published';
 
         if ($existingProduct) {
             $existingProduct->update(['status' => 'updated']);
