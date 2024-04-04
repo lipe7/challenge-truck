@@ -9,7 +9,7 @@ class ImportHistory extends Model
 {
     use HasFactory;
     protected $connection = 'mongodb';
-    protected $table = 'import_histories';
+    protected $collection = 'import_histories';
 
     protected $fillable = [
         'start_time',
