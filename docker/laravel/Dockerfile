@@ -22,4 +22,5 @@ WORKDIR /var/www/html
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
 RUN chmod +x /usr/local/bin/wait-for-it.sh
 
-EXPOSE 3021
+CMD php artisan serve --host=0.0.0.0 --port=8000
+EXPOSE 8000
