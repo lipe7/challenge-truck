@@ -1,11 +1,12 @@
 version: '3'
 
 services:
-  laravel:
+  app:
     build:
-      context: ./docker/laravel
+      context: .
+      dockerfile: ./docker/laravel/Dockerfile
     ports:
-      - "3022:8000"
+      - "3021:8000"
     volumes:
       - ./api:/var/www/html
     depends_on:

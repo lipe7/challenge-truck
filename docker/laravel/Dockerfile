@@ -1,24 +1,25 @@
-FROM php:8.0-apache
+# Usa a imagem oficial do PHP como base
+FROM php:8.1-fpm
 
-# Instalar dependências do Laravel e extensão MongoDB
-RUN docker-php-ext-install pdo pdo_mysql \
-    && pecl install mongodb \
-    && docker-php-ext-enable mongodb
+# Instala dependências
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libssl-dev \
+    && docker-php-ext-install pdo_mysql
 
-# Habilitar mod_rewrite
-RUN a2enmod rewrite
+# Instala o Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar o arquivo de configuração do Apache
-COPY apache2.conf /etc/apache2/apache2.conf
+# Instala as extensões PHP necessárias
+RUN pecl install mongodb && docker-php-ext-enable mongodb
+RUN pecl install redis && docker-php-ext-enable redis
 
-# Copiar o VirtualHost do Laravel
-COPY laravel.conf /etc/apache2/sites-available/laravel.conf
-
-# Habilitar o VirtualHost
-RUN a2ensite laravel
-
-# Reiniciar o Apache
-RUN service apache2 restart
-
-# Setar o diretório de trabalho
+# Define o diretório de trabalho
 WORKDIR /var/www/html
+
+# Adiciona o script wait-for-it.sh
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
+EXPOSE 3021
