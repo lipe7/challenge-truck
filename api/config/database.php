@@ -95,8 +95,8 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('DB_URI', '<connection string>'),
-            'database' => 'sample_mflix',
+            'dsn' => env('DB_URI', 'mongodb+srv://felipec165:J7oRVU4MXBJkm74q@challenge-db.ygeaibj.mongodb.net/?retryWrites=true&w=majority&appName=challenge-db'),
+            'database' => 'challenge-db'
           ],
 
     ],
