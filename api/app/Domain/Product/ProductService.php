@@ -2,6 +2,7 @@
 
 namespace App\Domain\Product;
 
+use App\Http\Requests\ListRequest;
 use App\Http\Requests\UpdateProductRequest;
 
 class ProductService
@@ -11,6 +12,13 @@ class ProductService
     public function __construct(ProductRepository $repository)
     {
         $this->repository = $repository;
+    }
+
+    public function getAll(ListRequest $request)
+    {
+        $filters = $request->validated();
+
+        return $this->repository->getAll($filters);
     }
 
     public function updateProduct(UpdateProductRequest $request, $code)
