@@ -21,3 +21,6 @@ fdb:
 test:
 	docker-compose exec app php artisan test --env=testing
 	docker-compose exec app php artisan config:clear
+
+cron:
+	docker-compose exec app php artisan import:openfoodfacts
