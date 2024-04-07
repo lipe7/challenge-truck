@@ -22,7 +22,6 @@ Nesse desafio trabalharemos no desenvolvimento de uma REST API para utilizar os 
 Instale a aplicação com os comandos abaixo:
 
 ```bash
-  composer install
   make up
 ```
 
