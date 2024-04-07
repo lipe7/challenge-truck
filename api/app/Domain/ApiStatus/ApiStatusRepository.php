@@ -10,4 +10,9 @@ class ApiStatusRepository
     {
         return ImportHistory::latest()->first()?->start_time;
     }
+
+    public function verifyApiKey($apiKey)
+    {
+        return ApiKey::where('key', $apiKey)->first();
+    }
 }

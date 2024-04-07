@@ -20,8 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', [ApiStatusController::class, 'apiDetails']);
-Route::put('/products/{code}', [ProductController::class, 'update']);
-Route::delete('/products/{code}', [ProductController::class, 'delete']);
-Route::get('/products', [ProductController::class, 'list']);
-Route::get('/products/{code}', [ProductController::class, 'show']);
+Route::middleware(['verify.api'])->group(function () {
+    Route::get('/', [ApiStatusController::class, 'apiDetails']);
+
+    Route::prefix('products')->group(function () {
+        Route::put('/{code}', [ProductController::class, 'update']);
+        Route::delete('/{code}', [ProductController::class, 'delete']);
+        Route::get('/', [ProductController::class, 'list']);
+        Route::get('/{code}', [ProductController::class, 'show']);
+    });
+});
