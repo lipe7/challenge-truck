@@ -19,10 +19,18 @@ Nesse desafio trabalharemos no desenvolvimento de uma REST API para utilizar os 
 
 ## Installation
 
-Instale a aplicação com os comandos abaixo:
+Instale a aplicação com o comando abaixo:
 
 ```bash
   make up
+```
+
+## Generate API KEY
+
+Para testar as requisições, gere a api key com o seguinte comando:
+
+```bash
+  make key
 ```
 
 ## Running Tests
