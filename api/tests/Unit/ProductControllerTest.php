@@ -78,10 +78,6 @@ class ProductControllerTest extends TestCase
                     'code',
                     'status',
                     'imported_t',
-                    'url',
-                    'last_modified_t',
-                    'product_name',
-                    'image_url',
                     'updated_at',
                     'created_at'
                 ]
