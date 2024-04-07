@@ -6,6 +6,7 @@ up:
 	docker-compose exec app php artisan cache:clear
 	docker-compose exec app php artisan optimize
 	docker-compose exec app php artisan config:clear
+	docker-compose exec app php artisan schedule:work
 	
 down:
 	docker-compose down
