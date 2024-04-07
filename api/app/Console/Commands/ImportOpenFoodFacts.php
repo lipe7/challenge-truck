@@ -35,6 +35,7 @@ class ImportOpenFoodFacts extends Command
     public function handle()
     {
         $importHistory = $this->startImport();
+        $this->generateLog('Importação iniciada.');
 
         try {
             do {
@@ -48,11 +49,13 @@ class ImportOpenFoodFacts extends Command
                 Log::info("Page {$this->page} imported successfully.");
 
                 $this->page++;
-            } while ($this->totalImported < 100);
+            } while ($this->totalImported < 1);
 
             $this->finishImport($importHistory);
+            $this->generateLog('Importação finalizada.');
         } catch (\Exception $e) {
             $this->failImport($importHistory);
+            $this->generateLog("Importação finalizada com erro: " . $e->getMessage());
         }
     }
 
@@ -116,5 +119,12 @@ class ImportOpenFoodFacts extends Command
     {
         $importHistory->update(['status' => 'finished with error']);
         $this->error('Import failed.');
+    }
+
+    protected function generateLog($message)
+    {
+        return Log::info("$message\n" .
+            "Data: " . now()->format('d-m-Y') . "\n" .
+            "Hora: " . now()->format('H:i:s'));
     }
 }
