@@ -49,7 +49,7 @@ class ImportOpenFoodFacts extends Command
                 Log::info("Page {$this->page} imported successfully.");
 
                 $this->page++;
-            } while ($this->totalImported < 1);
+            } while ($this->totalImported < 100);
 
             $this->finishImport($importHistory);
             $this->generateLog('Import finished.');
