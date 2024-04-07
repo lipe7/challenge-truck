@@ -1,5 +1,6 @@
 up:
 	cp api/.env.example api/.env
+	composer install -d api
 	docker-compose up -d --build --force-recreate --remove-orphans
 	docker-compose exec app php artisan key:generate
 	docker-compose exec app php artisan cache:clear
