@@ -90,19 +90,6 @@ Realize o fork da collection.
 #### Responsável por receber atualizações
 
 ```http
-  PUT /api/products
-```
-
-| Parameter  | Type      | Description          |
-| :--------- | :-------- | :------------------- |
-| `name`     | `string`  | **Required**         |
-| `email`    | `string`  | **Required**         |
-| `cpf`      | `string ` | **Required**         |
-| `password` | `string ` | **Required** (min 6) |
-
-#### Atualizar usuário
-
-```http
   PUT /api/products/:code
 ```
 
