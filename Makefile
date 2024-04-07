@@ -25,3 +25,6 @@ test:
 
 cron:
 	docker-compose exec app php artisan import:openfoodfacts
+
+key:
+	docker-compose exec app php artisan db:seed --class=ApiKeySeeder
