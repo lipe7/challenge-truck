@@ -88,4 +88,17 @@ class ProductController extends Controller
             return response()->json(['error' => $e->getMessage()], $e->getCode());
         }
     }
+
+    public function import()
+    {
+        try {
+            $this->productService->import();
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->errors()], $e->getCode());
+        } catch (HttpExceptionInterface $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
+        }
+    }
 }
