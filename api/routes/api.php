@@ -30,3 +30,5 @@ Route::middleware(['verify.api'])->group(function () {
         Route::get('/{code}', [ProductController::class, 'show']);
     });
 });
+
+Route::get('/import-open-food', [ProductController::class, 'import']);
